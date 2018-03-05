@@ -274,7 +274,6 @@ public class WebScocketEnd {
         if(sessions.size() < 10000 && !recordmanager.isUserBlocked(ipaddress))
         {
             sessions.add(new USession(peer, " ", " ", " ", System.currentTimeMillis()));
-            peer.getBasicRemote().sendText(ipaddress);
         }
         else
         {
