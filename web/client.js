@@ -20,7 +20,7 @@ var frontpage = [
     "Whitespace is preserved, so source code can be pasted verbatim.",
     "Surround LaTeX with a dollar sign for inline style $\\zeta(2) = \\pi^2/6$, and two dollars for display. $$\\int_0^1 \\int_0^1 \\frac{1}{1-xy} dx dy = \\frac{\\pi^2}{6}$$",
     "",
-    "GitHub: https://github.com/PiyushXCoder/uchat",
+    "GitHub: https://github.com/PiyushXCoder/uchats.git",
     "",
     "Server and web client released under the MIT license.",
     "No message history is retained on the UChats server.",
