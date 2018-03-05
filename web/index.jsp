@@ -16,7 +16,6 @@
       <footer id="footer">
          <div class="container">
             <span class="select-wrapper" style="background-image: url(images/image.png);"><input class="fotterbutton" type="file" id="uploadimage" value="Upload Image" accept="image/*"></span>
-            <span class="select-wrapper" style="background-image: url(images/video.png);"><input class="fotterbutton" type="file" id="uploadvideo" value="Upload Video" accept="video/*"></span>
             <span class="select-wrapper" style="background-image: url(images/file.png);"><input class="fotterbutton" type="file" id="uploadfile" value="Upload File"></span>
             <form id="chatform" class="messages"><textarea id="chatinput" type="text" autocomplete="off" autofocus></textarea></form>
          </div>

@@ -58,13 +58,13 @@ window.setInterval(function() {
 
 function join(channel) {
 
-    //if (document.domain == 'uchats.herokuapp.com') {
+    if (document.domain == 'uchats.herokuapp.com') {
         ws = new WebSocket('wss://uchats.herokuapp.com/uchatsserver')
-    /*}
+    }
     else {
         // for local installs
         ws = new WebSocket('ws://' + location.hostname+":"+location.port + '/uchatsserver')
-    }*/
+    }
 
     var wasConnected = false
 
@@ -299,29 +299,18 @@ $('#footer').onclick = function() {
 $('#uploadimage').onchange = function() {
     file = this.files[0];
     reader  = new FileReader();
-    
+        
     reader.addEventListener("load", function () {
+        if(file.size > 49000)
+        {
+            pushMessage({nick:'!', text:'Image must be smaller than 49000 bytes'});
+            return ;
+        }
+        
         args = {};
         args.cmd = "chat";
         args.text = '<img src="'+reader.result+'">';
-        send(args);
-    }, false);
-     
-    if (file) {
-        reader.readAsDataURL(file);
-    } 
-}
-
-$('#uploadvideo').onchange = function() {
-    file = this.files[0];
-    reader  = new FileReader();
-    
-    reader.addEventListener("load", function () {
-        args = {};
-        args.cmd = "chat";
-        args.text =   '<video width="320" height="240" controls>'+
-                      '<source src="'+reader.result+'">'+
-                      '</video>';
+        args.nick = "me";
         send(args);
     }, false);
      
@@ -335,6 +324,12 @@ $('#uploadfile').onchange = function() {
     reader  = new FileReader();
     
     reader.addEventListener("load", function () {
+        if(file.size > 49000)
+        {
+            pushMessage({nick:'!', text:'File must be smaller than 49000 bytes'});
+            return;
+        }
+    
         args = {};
         args.cmd = "chat";
         args.text = '<a target="_blank" href="'+reader.result+'">File: '+file.name+'</a>';
