@@ -58,13 +58,13 @@ window.setInterval(function() {
 
 function join(channel) {
 
-    if (document.domain == 'uchats.herokuapp.com') {
+    //if (document.domain == 'uchats.herokuapp.com') {
         ws = new WebSocket('wss://uchats.herokuapp.com/uchatsserver')
-    }
+    /*}
     else {
         // for local installs
         ws = new WebSocket('ws://' + location.hostname+":"+location.port + '/uchatsserver')
-    }
+    }*/
 
     var wasConnected = false
 
@@ -190,10 +190,10 @@ function pushMessage(args) {
     // Text
     var textEl = document.createElement('pre')
     textEl.classList.add('text')
-
-    textEl.textContent = args.text || ''
+    
+    textEl.innerHTML = args.text || ''
     textEl.innerHTML = textEl.innerHTML.replace(/(\?|https?:\/\/)\S+?(?=[,.!?:)]?\s|$)/g, parseLinks)
-
+    
     if ($('#parse-latex').checked) {
         // Temporary hotfix for \rule spamming, see https://github.com/Khan/KaTeX/issues/109
         textEl.innerHTML = textEl.innerHTML.replace(/\\rule|\\\\\s*\[.*?\]/g, '')
@@ -220,7 +220,6 @@ function pushMessage(args) {
     unread += 1
     updateTitle()
 }
-
 
 function insertAtCursor(text) {
     var input = $('#chatinput')
@@ -295,6 +294,56 @@ function updateTitle() {
 
 $('#footer').onclick = function() {
     $('#chatinput').focus()
+}
+
+$('#uploadimage').onchange = function() {
+    file = this.files[0];
+    reader  = new FileReader();
+    
+    reader.addEventListener("load", function () {
+        args = {};
+        args.cmd = "chat";
+        args.text = '<img src="'+reader.result+'">';
+        send(args);
+    }, false);
+     
+    if (file) {
+        reader.readAsDataURL(file);
+    } 
+}
+
+$('#uploadvideo').onchange = function() {
+    file = this.files[0];
+    reader  = new FileReader();
+    
+    reader.addEventListener("load", function () {
+        args = {};
+        args.cmd = "chat";
+        args.text =   '<video width="320" height="240" controls>'+
+                      '<source src="'+reader.result+'">'+
+                      '</video>';
+        send(args);
+    }, false);
+     
+    if (file) {
+        reader.readAsDataURL(file);
+    } 
+}
+
+$('#uploadfile').onchange = function() {
+    file = this.files[0];
+    reader  = new FileReader();
+    
+    reader.addEventListener("load", function () {
+        args = {};
+        args.cmd = "chat";
+        args.text = '<a target="_blank" href="'+reader.result+'">File: '+file.name+'</a>';
+        send(args);
+    }, false);
+     
+    if (file) {
+        reader.readAsDataURL(file);
+    } 
 }
 
 $('#chatinput').onkeydown = function(e) {
