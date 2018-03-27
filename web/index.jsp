@@ -3,7 +3,7 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta charset="utf-8">
-      <title>hack.chat</title>
+      <title>UChats</title>
       <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="katex/katex.min.css">
       <link id="scheme-link" rel="stylesheet" href="schemes/atelier-dune.css">
