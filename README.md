@@ -1,7 +1,7 @@
 
 ## Local install
 
-Project is created with netbeans. It would be better to use netbeans to build it.
+Project is created with netbeans or ant. It would be better to use netbeans to build it.
 
 ## You'll need 
 
